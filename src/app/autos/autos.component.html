@@ -1,0 +1,22 @@
+<p>Buscador de todos los autos (incluso vendidos):</p>
+
+<form>
+    <input placeholder="Ingrese patente" type="text" name="patente" id="patente" [(ngModel)]="patente">
+
+    <button (click)="buscarAuto()" type="submit">Buscar</button>
+</form>
+
+<div *ngFor="let data of autos "> <!-- Usando el GET -->
+    <p>Patente: {{ data.patente }}</p> 
+    <button (click)="venderAuto()" type="button">Vender Auto</button>
+</div>
+
+<br><br><br>
+
+<p>Buscador de Autos solo para la venta:</p>
+
+<button (click)="buscarAutosDisponible()" type="button">Buscar Autos en Venta</button>
+
+<div *ngFor="let data of autosParaVenta"> <!-- Usando el GET -->
+    <p>Patente: {{ data.patente }}</p> 
+</div>
