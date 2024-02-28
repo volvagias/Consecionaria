@@ -4,13 +4,13 @@ import { AutosService } from '../autos.service'
 export interface Auto {
   marca: String, 
   modelo: String, 
-  precio: Number, 
+  precio: number, 
   km: Number, 
   color: String, 
   cuotas: Number, 
   anio: Number,
   patente: String, 
-  vendido: boolean
+  vendido: Boolean
 }
 
 @Component({
@@ -24,9 +24,21 @@ export class AutosComponent {
 
   autosParaVenta: Auto[] = [];
 
-  patente: string = '';
+  autosSinUso: Auto[] = [];
+
+  autosVendidos: Auto[] = [];
+
+  totalDeVentas: number = 0;
+
+
+
+
+  patente: String = '';
 
   autoDisponible: boolean = false;
+
+  autoNuevo: Number = 100;
+
 
   ngOnInit() {
 
@@ -36,13 +48,14 @@ export class AutosComponent {
     private autosService: AutosService ) {}
   
   buscarAuto() {
-    console.log("buscar", this.autos = this.autosService.autosImportados().filter((auto) => auto.patente === this.patente));
+    this.autos = this.autosService.autosImportados().filter((auto) => auto.patente === this.patente);
   }
 
   venderAuto () {
     switch (this.autos[0].vendido) {
       case false:
-          console.log('Vendido:', this.autos[0].vendido = true);
+          this.autos[0].vendido = true;
+          prompt("Auto vendido");
           break;
       
       case true:
@@ -54,7 +67,21 @@ export class AutosComponent {
   }
 
   buscarAutosDisponible() {
-    console.log("buscar", this.autosParaVenta = this.autosService.autosImportados().filter((auto) => auto.vendido === this.autoDisponible));
+    this.autosParaVenta = this.autosService.autosImportados().filter((auto) => auto.vendido === this.autoDisponible);
   }
 
+
+  autosNuevos() {
+    this.autosSinUso = this.autosService.autosImportados().filter((auto) => auto.km < this.autoNuevo);
+  }
+
+  listaDeVentas() {
+    this.autosVendidos = this.autosService.autosImportados().filter((auto) => auto.vendido === !this.autoDisponible);
+  }
+
+  ventasTotales() {
+    this.listaDeVentas();
+
+    this.totalDeVentas = this.autosVendidos.reduce((acumulador, producto) => acumulador + producto.precio, 0);
+  }
 }

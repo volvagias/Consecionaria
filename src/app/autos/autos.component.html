@@ -20,3 +20,30 @@
 <div *ngFor="let data of autosParaVenta"> <!-- Usando el GET -->
     <p>Patente: {{ data.patente }}</p> 
 </div>
+
+<br><br><br>
+
+
+<p>Buscador de Autos Nuevos:</p>
+
+<button (click)="autosNuevos()" type="button">Buscar Autos Nuevos</button>
+
+<div *ngFor="let data of autosSinUso"> <!-- Usando el GET -->
+    <p>Patente: {{ data.patente }}</p> 
+</div>
+
+<br><br><br>
+
+<p>Venta de cada Auto en Pesos:</p>
+
+<button (click)="listaDeVentas()">Dinero generado por cada Venta:</button>
+
+<div *ngFor="let data of autosVendidos">
+    <p>patente: {{ data.patente }} ${{ data.precio }}</p>
+</div>
+
+<br><br><br>
+
+<p>Ventas totales: $ {{ totalDeVentas }}</p>
+<button (click)="ventasTotales()">Total de Ventas en Pesos:</button>
+
