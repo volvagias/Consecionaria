@@ -80,8 +80,8 @@ export class AutosComponent {
   }
 
   ventasTotales() {
-    this.listaDeVentas();
+    const listaDeVentas = this.autosService.autosImportados().filter((auto) => auto.vendido === !this.autoDisponible);
 
-    this.totalDeVentas = this.autosVendidos.reduce((acumulador, producto) => acumulador + producto.precio, 0);
+    this.totalDeVentas = listaDeVentas.reduce((acumulador, producto) => acumulador + producto.precio, 0);
   }
 }
