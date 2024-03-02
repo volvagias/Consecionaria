@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Auto } from '../app/autos/autos.component';
+import { Persona } from '../app/autos/autos.component';
 
 @Injectable({
   providedIn: 'root'
@@ -33,8 +34,20 @@ export class AutosService {
     }
   ];
 
-  autosImportados(){
-  return this.autos;
+  personas: Persona[] = [
+    {
+      nombre: "Juan",
+      capacidadDePagoEnCuotas: 20000,
+      capacidadDePagoTotal: 100000
+    }
+  ];
+
+  autosImportados() {
+    return this.autos;
+  }
+
+  personaInteresada() {
+    return this.personas;
   }
 
 }

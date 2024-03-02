@@ -47,3 +47,24 @@
 <p>Ventas totales: $ {{ totalDeVentas }}</p>
 <button (click)="ventasTotales()">Total de Ventas en Pesos:</button>
 
+<br><br><br>
+
+<p>¿Puede pagar el auto?</p>
+
+<form>
+    <input placeholder="Ingrese cliente" type="text" name="cliente" id="cliente" [(ngModel)]="cliente">
+
+    <button (click)="buscarCliente()" type="submit">Buscar Cliente</button>
+</form>
+
+<div *ngFor="let data of personas">
+    <p>Nombre del cliente: {{ data.nombre }}</p>
+</div>
+
+
+<form>
+    <input placeholder="Ingrese patente" type="text" name="patente" id="patente" [(ngModel)]="verificarPatente">
+
+    <button (click)="puedeComprar()">Verificar</button>
+</form>
+
